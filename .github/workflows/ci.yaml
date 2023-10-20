@@ -17,8 +17,8 @@ jobs:
       - name: Run tests
         run: |
           set -e
-          colima start
           brew install docker
+          colima start
           docker ps
           docker images
           docker run --rm -it ubuntu:latest echo "test"
