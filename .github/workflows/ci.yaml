@@ -1,0 +1,25 @@
+name: CI
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  job:
+    name: Test MacOS docker
+    runs-on: macos-latest
+    timeout-minutes: 45
+    steps:
+
+      - name: 'Setup: checkout project'
+        uses: actions/checkout@v2
+
+      - name: Run tests
+        run: |
+          set -e
+          colima start
+          brew install docker
+          docker ps
+          docker images
+          docker run --rm -it ubuntu:latest echo "test"
+          
